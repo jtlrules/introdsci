@@ -1,0 +1,12 @@
+Getting Started
+
+  git init
+  git add files
+  git commit -m "description"
+  
+GitHub
+
+  New Repo
+  Add R .gitignore
+  Copy URL from URL/download
+  RStudio -> New Project -> Version Control
