@@ -1,0 +1,40 @@
+---
+title: "R Notebook"
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+  pdf_document: default
+---
+
+
+install.packages("tidyverse")
+```{r}
+library("tidyverse")
+library("tidyr")
+library("dplyr")
+library("readr")
+```
+
+```{r}
+survey <- read_csv("https://raw.githubusercontent.com/introdsci/MusicSurvey/master/music-survey.csv")
+preferences <- read_csv("https://raw.githubusercontent.com/introdsci/MusicSurvey/master/preferences-survey.csv")
+```
+```{r}
+colnames(survey)[3] <- "pseudonym"
+colnames(survey)[2] <- "pseudonym_generator"
+colnames(survey)[6] <- "academic_year"
+colnames(survey)[7] <- "year_born"
+colnames(survey)[1] <- "time_submitted"
+colnames(survey)[4] <- "sex"
+colnames(survey)[5] <- "academic_major"
+colnames(survey)[8] <- "instrument_list"
+colnames(survey)[9] <- "favorite_song_artist"
+colnames(survey)[10] <- "favorite_song"
+colnames(survey)[11] <- "favorite_song_link"
+```
+
+Lets create a table for person and favorite song
+
+as.POSIXlt(survey$time_submitted, na = character(), locale = default_locale(), trim_ws = TRUE, format = "%m/%d/%y %H:%M")
+
