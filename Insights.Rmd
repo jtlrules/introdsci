@@ -7,19 +7,26 @@ output:
   pdf_document: default
 ---
 
+Install the packages needed for the project
+```{r Package Install, message=FALSE}
+#install.packages("tidyverse")
+```
 
-install.packages("tidyverse")
-```{r}
+Initialize the libraries needed to make the code run
+```{r Library Declares, message=FALSE}
 library("tidyverse")
 library("tidyr")
 library("dplyr")
 library("readr")
+library("ggplot2")
 ```
 
-```{r}
+```{r message=FALSE}
 survey <- read_csv("https://raw.githubusercontent.com/introdsci/MusicSurvey/master/music-survey.csv")
 preferences <- read_csv("https://raw.githubusercontent.com/introdsci/MusicSurvey/master/preferences-survey.csv")
 ```
+
+Renaming Survey Column Names
 ```{r}
 colnames(survey)[3] <- "pseudonym"
 colnames(survey)[2] <- "pseudonym_generator"
@@ -32,9 +39,35 @@ colnames(survey)[8] <- "instrument_list"
 colnames(survey)[9] <- "favorite_song_artist"
 colnames(survey)[10] <- "favorite_song"
 colnames(survey)[11] <- "favorite_song_link"
+
+colnames(preferences)[2] <- "pseudonym"
 ```
 
 Lets create a table for person and favorite song
 
-as.POSIXlt(survey$time_submitted, na = character(), locale = default_locale(), trim_ws = TRUE, format = "%m/%d/%y %H:%M")
+Standardizing the time format in both the preferences and survey tables
+
+```{r}
+survey$time_submitted <- as.POSIXlt( survey$time_submitted, na = character(), format = "%m/%d/%y %H:%M", locale = default_locale() )
+
+preferences$Timestamp <- as.POSIXlt( preferences$Timestamp, na = character(), format = "%m/%d/%y %H:%M", locale = default_locale() )
+```
+```{r}
+view(survey)
+#aes(x, y): x = x-axis, y = y-axis
+#f <- ggplot(mpg, aes(cty, hwy))
+  #plot name <- ggplot(data set, x/y axes)
+```
+
+Ratings Tibble Cleaning
+```{r}
+#(colnames(Ratings)[3]<-"favorite_song_link"
+```
+
+GGPlot Testing
+```{r}
+GP <- ggplot(survey, aes(pseudonym, year_born))
+```
+
+
 
